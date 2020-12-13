@@ -30,6 +30,22 @@ def date_of_order():
 root = Tk()
 
 root.title("MePod v1.11")
+root.iconbitmap('D:/vs code proj/MePod/MePod/EXE builder/icon.ico')
+
+root.geometry("800x350")
+
+my_notbook = ttk.Notebook(root)
+my_notbook.pack()
+my_frame1 = Frame(my_notbook, width=800, height=350)
+my_frame2 = Frame(my_notbook, width=800, height=350)
+
+my_frame1.pack(fill="both", expand=1)
+my_frame2.pack(fill="both", expand=1)
+
+my_notbook.add(my_frame1, text="Order Maker")
+my_notbook.add(my_frame2, text="Add To Database")
+
+
 ### tool database ###
 
 
@@ -103,67 +119,67 @@ ListA = ['MAX', 'TECH', 'OMER', 'BEA', 'BOSTITCH', 'SENCO', 'SPOTNAILS']
 ListB = []
 
 
-shipToLabel = Label(root, text="Where to ship?", bg="#e7a6a6")
+shipToLabel = Label(my_frame1, text="Where to ship?", bg="#e7a6a6")
 shipToLabel.grid(row=0, column=0)
 
 shipTo = StringVar()
-shipToEntry = ttk.Entry(root, textvariable=shipTo)
+shipToEntry = ttk.Entry(my_frame1, textvariable=shipTo)
 
 shipToEntry.grid(row=0, column=1)
 
 
-billToLabel = Label(root, text="Customer to bill?", bg="#e7a6a6")
+billToLabel = Label(my_frame1, text="Customer to bill?", bg="#e7a6a6")
 billToLabel.grid(row=0, column=3)
 
 billTo = StringVar()
-billToEntry = ttk.Entry(root, textvariable=billTo)
+billToEntry = ttk.Entry(my_frame1, textvariable=billTo)
 billToEntry.grid(row=0, column=4)
 
 
-brandLabel = Label(root, text="Tool Brand?", bg="#e7a6a6")
+brandLabel = Label(my_frame1, text="Tool Brand?", bg="#e7a6a6")
 brandLabel.grid(row=1, column=0)
 
 brand = StringVar()
-comboboxA = ttk.Combobox(root, textvariable=brand, values=ListA)
+comboboxA = ttk.Combobox(my_frame1, textvariable=brand, values=ListA)
 comboboxA.bind("<<ComboboxSelected>>", modelList)
 comboboxA.grid(row=1, column=1)
 
 
-modelLabel = Label(root, text="Tool model?", bg="#e7a6a6")
+modelLabel = Label(my_frame1, text="Tool model?", bg="#e7a6a6")
 modelLabel.grid(row=1, column=3)
 
 model = StringVar()
-comboboxB = ttk.Combobox(root, textvariable=model, values=ListB)
+comboboxB = ttk.Combobox(my_frame1, textvariable=model, values=ListB)
 comboboxB.grid(row=1, column=4)
 
 
-schemLabel = Label(root, text="Shematic Number?", bg="#a9eca7")
+schemLabel = Label(my_frame1, text="Shematic Number?", bg="#a9eca7")
 schemLabel.grid(row=5, column=3)
 
-blank1Label = Label(root, text=" ")
+blank1Label = Label(my_frame1, text=" ")
 blank1Label.grid(row=2, column=3)
 
-findLabel = Label(root, text="Pull From Database", bg="#a9eca7")
+findLabel = Label(my_frame1, text="Pull From Database", bg="#a9eca7")
 findLabel.grid(row=3, column=3)
 
 schemNum = StringVar()
-schemEntry = Entry(root, textvariable=schemNum)
+schemEntry = Entry(my_frame1, textvariable=schemNum)
 schemEntry.grid(row=5, column=4)
 
 finalPartsList = [["TOOL", "QUANTITY", "PART#", "DESCRIPTION"]]
 
 
-ammountLabel = Label(root, text="Enter Quantitiy", bg="#e7a6a6")
+ammountLabel = Label(my_frame1, text="Enter Quantitiy", bg="#e7a6a6")
 ammountLabel.grid(row=5, column=0)
 
 amountTo = StringVar()
-amountToEntry = ttk.Entry(root, textvariable=amountTo)
+amountToEntry = ttk.Entry(my_frame1, textvariable=amountTo)
 amountToEntry.grid(row=5, column=1)
 
-blankLabel = Label(root, text=" ")
+blankLabel = Label(my_frame1, text=" ")
 blankLabel.grid(row=6, column=0)
 
-customLabel = Label(root, text="Add Custom Part Entry", bg="#a7acec")
+customLabel = Label(my_frame1, text="Add Custom Part Entry", bg="#a7acec")
 customLabel.grid(row=7, column=0)
 
 
@@ -178,7 +194,7 @@ def selectClick():
     for x in temp:
         list1.append(x)
     finalPartsList.append(list1)
-    w = ttk.Combobox(root, values=finalPartsList, width=120)
+    w = ttk.Combobox(my_frame1, values=finalPartsList, width=120)
     w.grid(row=12, column=0, columnspan=7)
     counter = counter + 1
     x = counter
@@ -187,16 +203,16 @@ def selectClick():
 
 
 schemButton = Button(
-    root, text="  Add Part  ", command=selectClick)
+    my_frame1, text="  Add Part  ", command=selectClick)
 schemButton.grid(row=5, column=6, columnspan=2)
 
-tableLabel = Label(root, text=" ")
+tableLabel = Label(my_frame1, text=" ")
 tableLabel.grid(row=10, column=0, columnspan=7)
 
-tableLabel = Label(root, text="Current Parts List")
+tableLabel = Label(my_frame1, text="Current Parts List")
 tableLabel.grid(row=11, column=0)
 
-w = ttk.Combobox(root, values=finalPartsList, width=120)
+w = ttk.Combobox(my_frame1, values=finalPartsList, width=120)
 w.grid(row=12, column=0, columnspan=7)
 w.current(counter)
 
@@ -207,7 +223,7 @@ def delLast():
         return 0
     else:
         del finalPartsList[-1]
-        w = ttk.Combobox(root, values=finalPartsList, width=120)
+        w = ttk.Combobox(my_frame1, values=finalPartsList, width=120)
         w.grid(row=12, column=0, columnspan=7)
         counter = counter - 1
         x = counter
@@ -215,22 +231,22 @@ def delLast():
 
 
 delButton = Button(
-    root, text="  Delete Last Entry  ", command=delLast)
+    my_frame1, text="  Delete Last Entry  ", command=delLast)
 delButton.grid(row=13, column=0, columnspan=4)
 
 
-partNumLabel = Label(root, text="Part #", bg="#a7acec")
+partNumLabel = Label(my_frame1, text="Part #", bg="#a7acec")
 partNumLabel.grid(row=8, column=1)
 
 custPartNum = StringVar()
-partNumEntry = Entry(root, textvariable=custPartNum)
+partNumEntry = Entry(my_frame1, textvariable=custPartNum)
 partNumEntry.grid(row=9, column=1)
 
-desLabel = Label(root, text="Part Description", bg="#a7acec")
+desLabel = Label(my_frame1, text="Part Description", bg="#a7acec")
 desLabel.grid(row=8, column=2)
 
 custDes = StringVar()
-desEntry = Entry(root, textvariable=custDes, width=50)
+desEntry = Entry(my_frame1, textvariable=custDes, width=50)
 desEntry.grid(row=9, column=2, columnspan=4)
 
 
@@ -243,7 +259,7 @@ def addCus():
     list1.append(custPartNum.get().upper())
     list1.append(custDes.get().upper())
     finalPartsList.append(list1)
-    w = ttk.Combobox(root, values=finalPartsList, width=120)
+    w = ttk.Combobox(my_frame1, values=finalPartsList, width=120)
     w.grid(row=12, column=0, columnspan=7)
     counter = counter + 1
     x = counter
@@ -252,7 +268,7 @@ def addCus():
 
 
 addCusButton = Button(
-    root, text="Add Custom Entry", command=addCus)
+    my_frame1, text="Add Custom Entry", command=addCus)
 addCusButton.grid(row=9, column=6)
 
 
@@ -264,7 +280,7 @@ def schemFetch():
 
 
 schemButton = Button(
-    root, text="Show Schematic", command=schemFetch)
+    my_frame1, text="Show Schematic", command=schemFetch)
 schemButton.grid(row=1, column=6)
 
 
@@ -352,11 +368,11 @@ def mainClick():
 
 
 button = Button(
-    root, text="                CREATE PDF              ", command=mainClick)
+    my_frame1, text="                CREATE PDF              ", command=mainClick)
 button.grid(row=13, column=5, columnspan=2)
 
 
-blankLabe2 = Label(root, text=" ")
+blankLabe2 = Label(my_frame1, text=" ")
 blankLabe2.grid(row=14, column=7)
 
 root.mainloop()
