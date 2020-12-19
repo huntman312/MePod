@@ -51,9 +51,9 @@ my_notbook.add(my_frame2, text="Add To Database")
 
 def toolDataBase():
     b = brand.get()
-    m = re.sub('[/!@#$.]', '', model.get())
+    m = re.sub('[/]', '@', model.get())
     filePath = path + "/" + "TOOL_DATABASE" + \
-        "/" + b + "/" + m + ".txt"
+        "/" + b + "/" + m
     finalPath = str(filePath)
 
     with open(finalPath, "r") as toolTextFile:
@@ -64,28 +64,23 @@ def toolDataBase():
 
 def modelList(*args):
     sel = brand.get()
-    if sel == 'MAX':
-        ListB = ['CN55', 'CN70', 'CN70PAL', 'CN80', 'CN100', 'CN445R3',
-                 'CN550S', 'CN565D', 'CN890F2', 'SN890CH3/34', 'TA551B/16-11']
-    elif sel == 'TECH':
-        ListB = ['PCN55M.1', 'PCN670SA.1']
-    elif sel == 'OMER':
-        ListB = ['B14.763 BF']
-    elif sel == 'BEA':
-        ListB = ['W15-358C']
-    elif sel == 'BOSTITCH':
-        ListB = ['438S2R-1']
-    elif sel == 'SENCO':
-        ListB = ['SCN65XP', 'SLP20XP']
-    elif sel == 'SPOTNAILS':
-        ListB = ['RC1016']
+    List1 = os.listdir(path + "/TOOL_DATABASE/" + sel)
+    List2 = []
+    for x in List1:
+        a = x.replace("@", "/")
+        List2.append(a)
+
+    ListB = List2
     comboboxB.config(values=ListB)
 
 
-ListA = ['MAX', 'TECH', 'OMER', 'BEA', 'BOSTITCH', 'SENCO', 'SPOTNAILS']
+ListA = os.listdir(str(path + "/" + "TOOL_DATABASE"))
 ListB = []
 
 
+# add to database button setup
+
+#
 shipToLabel = Label(my_frame1, text="Where to ship?", bg="#e7a6a6")
 shipToLabel.grid(row=0, column=0)
 
