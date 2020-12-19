@@ -29,8 +29,8 @@ def date_of_order():
 # tkinter window
 root = Tk()
 
-root.title("MePod v1.12")
-root.iconbitmap('D:/vs code proj/MePod/MePod/EXE builder/icon.ico')
+root.title("MePod v1.30")
+root.iconbitmap(path + '/EXE builder/icon.ico')
 
 root.geometry("800x350")
 
@@ -54,8 +54,9 @@ def toolDataBase():
     m = re.sub('[/!@#$.]', '', model.get())
     filePath = path + "/" + "TOOL_DATABASE" + \
         "/" + b + "/" + m + ".txt"
+    finalPath = str(filePath)
 
-    with open(filePath, "r") as toolTextFile:
+    with open(finalPath, "r") as toolTextFile:
         toolDict = toolTextFile.read()
         return literal_eval(toolDict)
 ### end tool database ###
