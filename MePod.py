@@ -30,7 +30,7 @@ def date_of_order():
 root = Tk()
 
 root.title("MePod v1.30")
-root.iconbitmap(path + '/EXE builder/icon.ico')
+root.iconbitmap(str(path + '/EXE builder/icon.ico'))
 
 root.geometry("800x350")
 
