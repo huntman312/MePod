@@ -79,8 +79,53 @@ ListB = []
 
 
 # add to database button setup
+brandLabel2 = Label(my_frame2, text="Tool Brand?")
+brandLabel2.grid(row=0, column=0)
 
-#
+addbrand = StringVar()
+modelentryA2 = ttk.Entry(my_frame2, textvariable=addbrand)
+modelentryA2.grid(row=0, column=1)
+
+
+modelLabel2 = Label(my_frame2, text="Tool model?")
+modelLabel2.grid(row=0, column=3)
+
+addmodel = StringVar()
+modelentryB2 = ttk.Entry(my_frame2, textvariable=addmodel)
+modelentryB2.grid(row=0, column=4)
+
+schemLabel = Label(my_frame2, text="Shematic Number?")
+schemLabel.grid(row=1, column=0)
+
+addschemNum = StringVar()
+schemEntry2 = Entry(my_frame2, textvariable=addschemNum)
+schemEntry2.grid(row=1, column=1)
+
+addPart = Label(my_frame2, text="Part Number?")
+addPart.grid(row=1, column=3)
+
+addPartNum = StringVar()
+PartNum2 = Entry(my_frame2, textvariable=addPartNum)
+PartNum2.grid(row=1, column=4)
+
+adddesc = Label(my_frame2, text="Description?")
+adddesc.grid(row=2, column=0)
+
+adddesentry = StringVar()
+adddes2 = Entry(my_frame2, textvariable=adddesentry, width=55)
+adddes2.grid(row=2, column=1, columnspan=4)
+
+
+def dataAdd():
+    return 0
+
+
+addButton = Button(
+    my_frame2, text="  Add To Database  ", command=dataAdd)
+addButton.grid(row=2, column=6, columnspan=2)
+
+
+# order tab
 shipToLabel = Label(my_frame1, text="Where to ship?", bg="#e7a6a6")
 shipToLabel.grid(row=0, column=0)
 
