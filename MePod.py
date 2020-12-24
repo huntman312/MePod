@@ -29,7 +29,7 @@ def date_of_order():
 # tkinter window
 root = Tk()
 
-root.title("MePod v1.30")
+root.title("MePod v1.35")
 root.iconbitmap(str(path + '/EXE builder/icon.ico'))
 
 root.geometry("800x350")
@@ -79,6 +79,39 @@ ListB = []
 
 
 # add to database button setup
+
+def dataAdd():
+    dbrand = addbrand.get().upper()
+    dmodel = addmodel.get().upper()
+    key = addschemNum.get().upper()
+    dpart = addPartNum.get().upper()
+    ddesc = adddesentry.get().upper()
+    dir1 = dbrand
+    check = dmodel.replace('/', '@')
+    if not os.path.exists(path + "/" + "TOOL_DATABASE" + "/" + dir1):
+        os.mkdir(path + "/" + "TOOL_DATABASE" + "/" + dir1)
+        file1 = os.path.join(path + "/" + "TOOL_DATABASE" +
+                             "/" + dir1, check)
+    else:
+        file1 = os.path.join(path + "/" + "TOOL_DATABASE" +
+                             "/" + dir1, check)
+    finalPath = file1
+    if os.path.isfile(finalPath) == False:
+        toolFile = open(finalPath, "w")
+        toolDict = {}
+        toolDict[key] = dpart, ddesc
+        toolFile.write(str(toolDict))
+    else:
+        toolFile = open(finalPath, "r")
+        oldDict = toolFile.read()
+        newDict = {}
+        newDict[key] = dpart, ddesc
+        strToDict = literal_eval(oldDict)
+        finalDict = {**strToDict, **newDict}
+        toolFile = open(finalPath, "w")
+        toolFile.write(str(finalDict))
+
+
 brandLabel2 = Label(my_frame2, text="Tool Brand?")
 brandLabel2.grid(row=0, column=0)
 
@@ -114,10 +147,6 @@ adddesc.grid(row=2, column=0)
 adddesentry = StringVar()
 adddes2 = Entry(my_frame2, textvariable=adddesentry, width=55)
 adddes2.grid(row=2, column=1, columnspan=4)
-
-
-def dataAdd():
-    return 0
 
 
 addButton = Button(
@@ -160,13 +189,13 @@ comboboxB = ttk.Combobox(my_frame1, textvariable=model, values=ListB)
 comboboxB.grid(row=1, column=4)
 
 
-schemLabel = Label(my_frame1, text="Shematic Number?", bg="#a9eca7")
+schemLabel = Label(my_frame1, text="Shematic Number?", bg="#e7a6a6")
 schemLabel.grid(row=5, column=3)
 
 blank1Label = Label(my_frame1, text=" ")
 blank1Label.grid(row=2, column=3)
 
-findLabel = Label(my_frame1, text="Pull From Database", bg="#a9eca7")
+findLabel = Label(my_frame1, text="Pull From Database", bg="#e7a6a6")
 findLabel.grid(row=3, column=3)
 
 schemNum = StringVar()
@@ -208,6 +237,9 @@ def selectClick():
     w.current(x)
     return 0
 
+
+warn1 = Label(my_frame1, text="All RED fields required!")
+warn1.grid(row=4, column=6)
 
 schemButton = Button(
     my_frame1, text="  Add Part  ", command=selectClick)
@@ -257,9 +289,41 @@ desEntry = Entry(my_frame1, textvariable=custDes, width=50)
 desEntry.grid(row=9, column=2, columnspan=4)
 
 
+def dataAddcus():
+    dbrand = brand.get().upper()
+    dmodel = model.get().upper()
+    key = schemNum.get().upper()
+    dpart = custPartNum.get().upper()
+    ddesc = custDes.get().upper()
+    dir1 = dbrand
+    check = dmodel.replace('/', '@')
+    if not os.path.exists(path + "/" + "TOOL_DATABASE" + "/" + dir1):
+        os.mkdir(path + "/" + "TOOL_DATABASE" + "/" + dir1)
+        file1 = os.path.join(path + "/" + "TOOL_DATABASE" +
+                             "/" + dir1, check)
+    else:
+        file1 = os.path.join(path + "/" + "TOOL_DATABASE" +
+                             "/" + dir1, check)
+    finalPath = file1
+    if os.path.isfile(finalPath) == False:
+        toolFile = open(finalPath, "w")
+        toolDict = {}
+        toolDict[key] = dpart, ddesc
+        toolFile.write(str(toolDict))
+    else:
+        toolFile = open(finalPath, "r")
+        oldDict = toolFile.read()
+        newDict = {}
+        newDict[key] = dpart, ddesc
+        strToDict = literal_eval(oldDict)
+        finalDict = {**strToDict, **newDict}
+        toolFile = open(finalPath, "w")
+        toolFile.write(str(finalDict))
+
+
 def addCus():
     global counter
-    partList = toolDataBase()
+    #partList = toolDataBase()
     list1 = []
     list1.append(brand.get().upper() + " " + model.get().upper())
     list1.append(amountTo.get())
@@ -271,8 +335,12 @@ def addCus():
     counter = counter + 1
     x = counter
     w.current(x)
+    dataAddcus()
     return 0
 
+
+warn2 = Label(my_frame1, text="All RED and BLUE fields required!")
+warn2.grid(row=8, column=6)
 
 addCusButton = Button(
     my_frame1, text="Add Custom Entry", command=addCus)
