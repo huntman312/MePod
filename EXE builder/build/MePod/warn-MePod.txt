@@ -46,7 +46,7 @@ missing module named rl_config - imported by reportlab.lib.utils (delayed, condi
 missing module named urllib2 - imported by reportlab.lib.utils (conditional)
 missing module named 'reportlab.lib.pyHnj' - imported by reportlab.lib.utils (delayed, optional)
 missing module named Image - imported by reportlab.lib.utils (conditional, optional)
-missing module named olefile - imported by PIL.MicImagePlugin (top-level), PIL.FpxImagePlugin (top-level)
+missing module named olefile - imported by PIL.FpxImagePlugin (top-level), PIL.MicImagePlugin (top-level)
 missing module named 'PySide2.QtCore' - imported by PIL.ImageQt (conditional, optional)
 missing module named PySide2 - imported by PIL.ImageQt (conditional, optional)
 missing module named 'PyQt5.QtCore' - imported by PIL.ImageQt (conditional, optional)

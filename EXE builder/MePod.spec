@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['MePod.py'],
-             pathex=['D:\\vs code proj\\MePod\\MePod\\EXE builder'],
+             pathex=['D:\\vscodeproj\\MePod\\MePod\\EXE builder'],
              binaries=[],
              datas=[],
              hiddenimports=[],
