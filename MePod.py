@@ -30,8 +30,8 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = True
 
-
-
+path = os.getcwd()
+print(path)
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
     global val, w, root
@@ -61,7 +61,7 @@ class Toplevel1:
     check = False
     counter = 0
     system = sys.platform
-    path = os.getcwd()
+    global path
     finalPartsList = [["TOOL", "QUANTITY", "PART#", "DESCRIPTION"]]
 
     def date_of_order(self):
